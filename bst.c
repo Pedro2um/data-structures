@@ -72,7 +72,7 @@ bst_node* i_insert(bst_node* root, int data) {
 	if(root == NULL){
 		return get_new_node(data);
 	}
-	// this shit gets messy brah, not even eanted to do this
+	// this shit gets messy brah, not even wanted to do this
 	// thanks to https://stackoverflow.com/questions/49308188/iterative-binary-search-tree-insert-in-c
 	// yes i needed, but whatch out, i'm doing BST for my first time, give me some bonus
 	bst_node **pp = &root;
