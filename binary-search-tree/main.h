@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <assert.h>
 
+//Linked list implementation
 typedef struct bst_node{
 	int data;
 	struct bst_node* left;
