@@ -16,10 +16,15 @@ typedef struct bst_node{
 }bst_node;
 
 
-bool search(bst_node* root, int data);
+bool r_search(bst_node* root, int data);
+bool i_search(bst_node* root, int data);
 bst_node* get_new_node(int data);
 bst_node* r_insert(bst_node* root, int data);
 bst_node* i_insert(bst_node* root, int data);
+int r_find_min(bst_node* root);
+int i_find_min(bst_node* root);
+int r_find_max(bst_node* root);
+int i_find_max(bst_node* root);
 
 int main() {
   	bst_node* root = NULL; // creat empty tree
@@ -31,11 +36,12 @@ int main() {
 	root = i_insert(root, 12);
 
 	int num;
-	
-	while( scanf("%d", &num) == 1 ){
-	if(search(root, num) ) printf("Found\n");
+	printf("%d\n", r_find_max(root));
+	printf("%d\n", i_find_max(root));
+	/*while( scanf("%d", &num) == 1 ){
+	if(i_search(root, num) ) printf("Found\n");
 	else printf("Not found\n");
-	}
+	}*/
 	return 0;
 }
 
@@ -87,9 +93,68 @@ bst_node* i_insert(bst_node* root, int data) {
 }
 
 //recursively, time and space complexity O(h)
-bool search(bst_node* root, int data){
+bool r_search(bst_node* root, int data){
 	if(root == NULL) return false;
 	else if(root->data == data) return true;
-	else if(root->data >= data) return search(root->left, data);
-	else return search(root->right, data);
+	else if(root->data >= data) return r_search(root->left, data);
+	else return r_search(root->right, data);
+}
+
+//time complexity still O(h) but space complexity is now O(1)
+bool i_search(bst_node* root, int data){
+	bst_node* curr = root;
+	bst_node* prev = NULL;
+	while(curr != NULL){
+		prev = curr;
+		if(curr->data == data){
+			return true;
+		}
+		else if(data > curr->data){
+			curr = curr->right;
+		}
+		else{
+			curr = curr->left;
+		}
+	}
+	return false;
+}
+
+//time complexity still O(h) but space complexity is now O(1)
+int i_find_min(bst_node* root){
+	bst_node* curr = root;
+	if(curr == NULL){
+		assert(0);
+	}
+	while(curr->left != NULL){
+		curr = curr->left;
+	}
+	return curr->data;
+}
+
+//recursively, time and space complexity O(h)
+int r_find_min(bst_node* root){
+	if(root == NULL) assert(0);
+	else if(root->left != NULL) return r_find_min(root->left);
+	else return root->data;
+}
+
+//you dont need curr, but this improves code readability
+int i_find_max(bst_node* root){
+	bst_node* curr = root;
+	if(curr == NULL){
+		assert(0);
+	}
+	while(curr->right != NULL){
+		curr = curr->right;
+	}
+	return curr->data;
+}
+
+int r_find_max(bst_node* root){
+	if(root == NULL) assert(0);
+	
+	int data = root->data;
+	
+	if(root->right != NULL) return r_find_max(root->right);
+	else return root->data;
 }
