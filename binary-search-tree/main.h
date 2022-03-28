@@ -6,22 +6,17 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <assert.h>
-//BST == Binary Search Tree
-//BST implementation
-
-
-// we need this, try to remove and see what happens
 
 typedef struct bst_node{
 	int data;
-	struct bst_node* left; // for this
-	struct bst_node* right; // for this
+	struct bst_node* left;
+	struct bst_node* right;
 }bst_node;
 
 static  bst_node* get_new_node(int data);
 
 //revursive functions
-static bool r_search(bst_node* root, int data);
+static  bool r_search(bst_node* root, int data);
 static  bst_node* r_insert(bst_node* root, int data);
 static  int r_find_min(bst_node* root);
 static  int r_find_max(bst_node* root);
