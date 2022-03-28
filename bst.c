@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <assert.h>
 
+#define MAX(a,b)	a>b?a:b
+
 //BST == Binary Search Tree
 //BST implementation
 
@@ -15,16 +17,22 @@ typedef struct bst_node{
 	struct bst_node* right; // for this
 }bst_node;
 
-
-bool r_search(bst_node* root, int data);
-bool i_search(bst_node* root, int data);
 bst_node* get_new_node(int data);
+
+//revursive functions
+bool r_search(bst_node* root, int data);
 bst_node* r_insert(bst_node* root, int data);
-bst_node* i_insert(bst_node* root, int data);
 int r_find_min(bst_node* root);
-int i_find_min(bst_node* root);
 int r_find_max(bst_node* root);
+int r_find_height(bst_node* root); // this function works for any binary tree, not only BST
+
+//iterative functions
+bool i_search(bst_node* root, int data);
+bst_node* i_insert(bst_node* root, int data);
+int i_find_min(bst_node* root);
 int i_find_max(bst_node* root);
+//int i_find_height(bst_node* root); //requieres use of queue
+
 
 int main() {
   	bst_node* root = NULL; // creat empty tree
@@ -35,9 +43,10 @@ int main() {
 	root = i_insert(root, 8);
 	root = i_insert(root, 12);
 
-	int num;
-	printf("%d\n", r_find_max(root));
-	printf("%d\n", i_find_max(root));
+	int num = r_find_height(root);
+	printf("number of edges in longest path: %d\n", num);
+	printf("number of nodes in longest path: %d\n", num+1);
+	//printf("%d\n", i_find_max(root));
 	/*while( scanf("%d", &num) == 1 ){
 	if(i_search(root, num) ) printf("Found\n");
 	else printf("Not found\n");
@@ -78,7 +87,7 @@ bst_node* i_insert(bst_node* root, int data) {
 	if(root == NULL){
 		return get_new_node(data);
 	}
-	// this shit gets messy brah, not even wanted to do this
+	// this gets messy, not even wanted to do this
 	// thanks to https://stackoverflow.com/questions/49308188/iterative-binary-search-tree-insert-in-c
 	// yes i needed, but whatch out, i'm doing BST for my first time, give me some bonus
 	bst_node **pp = &root;
@@ -157,4 +166,14 @@ int r_find_max(bst_node* root){
 	
 	if(root->right != NULL) return r_find_max(root->right);
 	else return root->data;
+}
+
+// this function works for any binary tree, not only BST
+int r_find_height(bst_node* root){
+	if(root == NULL)
+		return -1; 
+// counting number of edges, you should change to 0,
+// if you want to count number of nodes
+
+	return ( MAX(r_find_height(root->left), r_find_height(root->right)) + 1);
 }
