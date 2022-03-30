@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef BST_H
+#define BST_H
 
 #define MAX(a,b)	a>b?a:b
 #include <stdio.h>
