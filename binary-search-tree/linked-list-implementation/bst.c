@@ -1,8 +1,8 @@
-#ifndef	FUNCS_H
-#define FUNCS_H
+#ifndef	BST_C
+#define BST_C
 
 #include <stdio.h>
-#include "main.h"
+#include "bst.h"
 
 // O(1)
 bst_node* get_new_node(int data){
