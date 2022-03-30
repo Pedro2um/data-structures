@@ -1,5 +1,5 @@
-#ifndef FUNCS_C
-#define FUNCS_C
+#ifndef LINKED_LIST_C
+#define LINKED_LIST_C
 
 #include <stdio.h>
 #include "linkedlist.h"
