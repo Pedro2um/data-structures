@@ -161,7 +161,7 @@ void 	delete_linked_list(linked_list* linked_list){
 }
 
 static bool		has_cicle_in_linked_list(linked_list* linked_list){
-	if(head == NULL) return false;
+	if(linked_list->head == NULL) return false;
 
 	node* slow = linked_list->head;
 	node* fast = linked_list->head->next;
@@ -177,4 +177,4 @@ static bool		has_cicle_in_linked_list(linked_list* linked_list){
 	return true;
 }
 
-#endif /* FUNCS_C*/
+#endif /* LINKED_LIST_C*/
