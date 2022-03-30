@@ -1,6 +1,19 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+
+/* Time and Space complexity:
+*
+* Insert and Delete operation:
+*
+* best case scenario -> at head O(1) for time and space
+* worst case scenario -> at tail O(n) only for time, space will still be O(1)
+*
+* Obs1: All other operations implemented here will take O(1) or O(n)
+* Example: recursive reverse linked list will take O(n) time and need O(n) extra space 
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
