@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "main.h"
-#include "funcs.c"
+#include "bst.h"
+#include "bst.c"
 
 int main() {
   	bst_node* root = NULL; // creat empty tree
