@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "funcs.c"
+#include "linkedlist.c"
 //04:12 30/03/2022
 
 //i dont wanna implement a doubly linked list, because is just a linked list with two pointers, prev and next.
