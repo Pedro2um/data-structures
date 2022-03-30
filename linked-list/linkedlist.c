@@ -2,7 +2,7 @@
 #define FUNCS_C
 
 #include <stdio.h>
-#include "main.h"
+#include "linkedlist.h"
 
 
 void	delete_head_node(linked_list* linked_list){
