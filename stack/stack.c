@@ -78,9 +78,6 @@ char opposite_of_my_close_char(char c) {
 
 bool     is_balanced(char* string){
 
-        //local function that i only gonna use here in this function
-       
-
          stack* temp_stack = malloc(sizeof(stack));
        // printf("ola\n");
         if(temp_stack == NULL){
@@ -201,21 +198,21 @@ void    evaluate_postfix_equation(char* string, char equation_flag){
 
                 }
                 else{
-                        // is_operator(string[i])&& !is_empty(temp_stack) 
+                         
                         int op2 = top(temp_stack)->data;
                         pop(temp_stack);
 
-                        printf("OP2: %d ", op2);
+                        //printf("OP2: %d ", op2);
 
                         int op1 = top(temp_stack)->data;
                         pop(temp_stack);
 
-                        printf("OP1: %d ", op1);
+                        //printf("OP1: %d ", op1);
 
-                        printf("OPERADOR: %c ", string[i]);
+                       // printf("OPERADOR: %c ", string[i]);
 
                         int result = perform_operation(string[i], op1, op2);
-                        printf("RESULTADO DA OPERACAO: %d\n", result);
+                        //printf("RESULTADO DA OPERACAO: %d\n", result);
 
                         push(temp_stack, result);
 
@@ -230,7 +227,7 @@ void    evaluate_postfix_equation(char* string, char equation_flag){
 
 //check if y has higher precision than x
 bool    has_higher_prec(char x, char y){
-        short int value_x, value_y;
+        short int value_x=1, value_y=1;
 
         if(x == '^'){
                 value_x = 3;
@@ -238,7 +235,6 @@ bool    has_higher_prec(char x, char y){
         else if(x == '*' || x == '/'){
                 value_x = 2;
         }
-        else value_x = 1;
 
 
         if(y == '^'){
@@ -247,24 +243,9 @@ bool    has_higher_prec(char x, char y){
         else if(y == '*' || y == '/'){
                 value_y = 2;
         }
-        else value_y = 1;
 
         return (value_y > value_x);
-        /*
-                ^ == 3
-                / && * == 2
-                + && - == 1
-        
-        if(y == x){
-                return false;
-        }
-        else if( (y == '^') && ( (x == '*') || (x == '/') || (x == '+') || (x == '-') ) ) {
-                return true;
-        }
-        else if( ( (y == '*') || (y == '/') ) && ( (x == '+') || (x == '-') ) ){
-                return true;
-        }
-        */
+       
         return false;
 }
 
@@ -305,8 +286,6 @@ void     infix_to_postfix_equation(char* string, char equation_flag){
                 assert(0);
         }
 
-        //char temp_string[MAX_NUM_DIGITS_IN_DECIMAL_BASE];
-
         change_all_specifiers_to_parentheses(string);
 
         int i = 0, j = 0;
@@ -321,13 +300,11 @@ void     infix_to_postfix_equation(char* string, char equation_flag){
 
                 }
                 else if(string[i] == '('){
-                        //printf("Ale: %c \n", string[i]);
                         push(temp_stack, string[i]);
                 }
                 else if(string[i] == ')'){
                         while(!is_empty(temp_stack) && top(temp_stack)->data != '('){
                                 
-                                // && !is_operator(result[j])
                                 if(result[j] != equation_flag){
                                         result[j] = top(temp_stack)->data;
                                         j++;
@@ -351,7 +328,7 @@ void     infix_to_postfix_equation(char* string, char equation_flag){
                         while(  !is_empty(temp_stack) && (top(temp_stack)->data != '(') && has_higher_prec(string[i], top(temp_stack)->data) ){
 
                                 if(top(temp_stack)->data != '(' && top(temp_stack)->data != ')'){
-                                        //printf("STACK OBJECTS: %c \n", top(temp_stack)->data);
+                                        
                                         result[j] = top(temp_stack)->data;
                                         j++;
                                 }
@@ -370,27 +347,21 @@ void     infix_to_postfix_equation(char* string, char equation_flag){
         // doing this until the condition is broke
         while(!is_empty(temp_stack)){
                 if( !is_operator(result[j-1]) && result[j-1] != equation_flag ){
-                        //printf("before RESULT[I] == %c \n", result[i]);
+                        
                         result[j] = equation_flag;
-                        //printf("now RESULT[I] == %c \n", result[i]);
                         j++;
                 }
                 
                 if( top(temp_stack)->data != '(' && top(temp_stack)->data != ')'){
 
-                        //printf("STACK TRASH: %c \n", top(temp_stack)->data);
-                       // printf("before RESULT[j-1] == %c \n", result[j-1]);
-
                         result[j] = top(temp_stack)->data;
                         j++;
-
-                        //printf("next STACK TRASH: %c \n", top(temp_stack)->data);
-                       // printf("now RESULT[j-1] == %c \n", result[j-1]);
+ 
                 } 
                 pop(temp_stack);
         }
 
-        // just in case, set all chars of our original string to \0
+        // set all chars of our original string to \0
         // then copy the result for her
         memset(string, '\0', MAX_STRING_CHARS);
         strcpy(string, result);
