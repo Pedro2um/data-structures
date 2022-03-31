@@ -34,20 +34,28 @@ bst_node* r_insert(bst_node* root, int data){
 // time complexity still O(h) but space complexity is now O(1)
 //yes you need the address of the poiter to root
 bst_node* i_insert(bst_node* root, int data) {
+	
 	if(root == NULL){
 		return get_new_node(data);
 	}
+	
 	// this gets messy, not even wanted to do this
-	// thanks to https://stackoverflow.com/questions/49308188/iterative-binary-search-tree-insert-in-c
-	// yes i needed, but whatch out, i'm doing BST for my first time, give me some bonus
-	bst_node **pp = &root;
-    while (*pp != NULL) {
-        if (data > (*pp)->data)
-            pp = &( (*pp)->right );
-        else
-            pp = &( (*pp)->left );
+	// ponteirs are the data we need to manipulate
+	bst_node **pt_to_pt = &root;
+	
+    while (*pt_to_pt != NULL) {
+	    
+        if (data > (*pt_to_pt)->data){
+		
+            pt_to_pt = &( (*pt_to_pt)->right );	
+	}
+	else{
+		
+            pt_to_pt = &( (*pt_to_pt)->left );
+	}
     }
-    *pp = get_new_node(data);
+	
+    *pt_to_pt = get_new_node(data);
     return root;
 }
 
@@ -122,8 +130,7 @@ int r_find_max(bst_node* root){
 int r_find_height(bst_node* root){
 	if(root == NULL)
 		return -1; 
-// counting number of edges, you should change to 0,
-// if you want to count number of nodes
+// return -1 because we are counting number of edges,  if you want to count number of nodes, you should change to 0.
 
 	return ( MAX(r_find_height(root->left), r_find_height(root->right)) + 1);
 }
