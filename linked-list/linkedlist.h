@@ -31,11 +31,11 @@ typedef struct linked_list{
 //C is hard, but makes sense
 // in portuguese, its like the phrase: "C de Certo"
 
-static void	 delete_head_node(linked_list* linked_list);
+static void	delete_head_node(linked_list* linked_list);
 
-static void  delete_tail_node(linked_list* linked_list);
+static void  	delete_tail_node(linked_list* linked_list);
 
-static node* get_new_node(int data);
+static node* 	get_new_node(int data);
 
 static void	insert_node_at_head(linked_list* linked_list , int data);
 
@@ -53,8 +53,8 @@ static void	r_reverse_linked_list(linked_list* linked_list);
 
 //auxiliary function to recursive reverse function
 //dynamic programing is hard
-static node* reverse_nodes(struct node* node, struct node** head);
+static node* 	reverse_nodes(struct node* node, struct node** head);
 
 static void 	delete_linked_list(linked_list* linked_list);
-static bool		has_cicle_in_linked_list(linked_list* linked_list);
+static bool	has_cicle_in_linked_list(linked_list* linked_list);
 #endif
