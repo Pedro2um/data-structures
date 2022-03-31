@@ -79,7 +79,7 @@ void	insert_node_at_tail(linked_list* linked_list , int data){
 	new_node->next = NULL;
 }
 
-//position 0 is head node
+//position 0 in linked list is head node
 void	insert_at_nth_position(linked_list* linked_list, int position, int data){
 	if(linked_list == NULL){
 		assert(0);
@@ -100,7 +100,7 @@ void	insert_at_nth_position(linked_list* linked_list, int position, int data){
         }
 	
 }
-//position 0 is head node
+//position 0 in linked list is head node
 void	delete_at_nth_position(linked_list* linked_list, int position, int data){
 	if(linked_list == NULL){
 		assert(0);
